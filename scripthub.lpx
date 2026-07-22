@@ -1,0 +1,76 @@
+#!name=curtinp118 · Cookie 抓取合集
+#!desc=一键抓取 Scripthub 。打开对应开关后，进入相应 App/小程序的签到页触发即可，收到「✅ <名称> Cookie 获取成功」通知即成功。
+#!author=curtinp118
+#!homepage=https://github.com/curtinp118/Scripthub
+#!icon=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/author/ZenMoFeiShi.png
+#!tag=签到, Cookie
+
+[Argument]
+nodeseek = switch,false,tag=NodeSeek签到-areyouok,desc=NodeSeek签到
+wps = switch,false,tag=WPS(App·测试中),desc=WPS App 版
+camscanner = switch,false,tag=扫描全能王(App·测试中),desc=打开「扫描全能王」APP → 任意页面停留几秒(自动触发 get_user_attribute)
+baidunetdisk = switch,false,tag=百度网盘(App·测试中),desc=打开百度网盘 APP →「我的」→ 进入「签到」页面,停留 1 秒
+ppmt = switch,false,tag=泡泡玛特,desc=打开泡泡玛特小程序进会员页触发(详见 README)
+haidilao = switch,false,tag=海底捞,desc=打开海底捞小程序进签到页触发(详见 README)
+miniso = switch,false,tag=名创优品,desc=打开名创优品小程序进会员页触发(详见 README)
+lhtj = switch,false,tag=龙湖天街(小程序),desc=打开龙湖天街小程序进签到页触发(详见 README)
+songshan = switch,false,tag=松山棉店,desc=打开松山棉店小程序进签到页触发(详见 README)
+teld = switch,false,tag=特来电,desc=打开特来电小程序进「签到365天」页触发(详见 README)
+newmixc = switch,false,tag=一点万象,desc=一点万象 App 进会员页触发(详见 README)
+linlee = switch,false,tag=林里签到兑换,desc=微信小程序LINLEE签到兑换
+
+
+[MITM]
+hostname = www.nodeseek.com, popvip.paquapp.com, api.tuhu.cn, superapp-public.kiwa-tech.com, media.meituan.com, member-center.miniso.com, a.china-smartech.com, gw2c-hw-open.longfor.com, xapi.weimob.com, scrm-b.zjian.net, sgi.teld.cc, c2.teld.cc, api.weibo.cn, bbs-api.miyoushe.com, pbaccess.video.qq.com, app.mixcapp.com, shop-api.retail.mi.com, m.xiaomiyoupin.com, user-api-prd-mx.wandafilm.com, u6.y.qq.com, discount.wxpapp.wechatpay.cn, mini-app-api.casetify.cn, m.topsports.com.cn, wxmall.topsports.com.cn, appapi.lvcchong.com, personal-act.wps.cn, csc-service.sgcc.com.cn, www.nodeseek.com, api-cs.intsig.net, pan.baidu.com, miao.baidu.com, cn-wxmall.dreame.tech, cn-yx-wxmall.dreame.tech, api.wetalkapp.com, api.pingmeapp.net shop-api.retail.mi.com, webapi.qmai.cn
+
+[Script]
+
+# nodeseek签到
+http-request ^https://www\.nodeseek\.com/api/account/getInfo/\d+\?readme=1$ script-path=https://raw.githubusercontent.com/curtinp118/Scripthub/main/scripts/nodeseek/nodeseek.js, requires-body=false, tag=NS 抓包, enabled={nodeseek}
+cron "19 9 * * *" script-path=https://raw.githubusercontent.com/curtinp118/Scripthub/main/scripts/nodeseek/nodeseek.js, tag=NS签到, enabled={nodeseek}
+
+# WPS(App)
+http-request ^https:\/\/personal-act\.wps\.cn\/activity-rubik\/activity\/page_info tag=WPS Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/wps/wps.cookie.js, requires-body=false, enable={wps}
+cron "2 0 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/wps/wps.js, tag=WPS签到, enable={wps}
+
+
+# 扫描全能王(App)
+http-request ^https:\/\/api-cs\.intsig\.net\/user\/cs\/get_user_attribute tag=扫描全能王 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/camscanner/camscanner.cookie.js, requires-body=false, enable={camscanner}
+cron "10 0 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/camscanner/camscanner.js, tag=扫描全能王签到, enable={camscanner}
+
+# 百度网盘(App)
+http-request ^https:\/\/pan\.baidu\.com\/coins\/taskcenter\/signinlist tag=百度网盘 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/baidunetdisk/baidunetdisk.js, requires-body=false, enable={baidunetdisk}
+http-request ^https:\/\/miao\.baidu\.com\/abdr tag=百度网盘 指纹, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/baidunetdisk/baidunetdisk.js, requires-body=true, enable={baidunetdisk}
+cron "14 0 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/baidunetdisk/baidunetdisk.js, tag=百度网盘签到, enable={baidunetdisk}
+
+# 泡泡玛特
+http-response ^https:\/\/popvip\.paquapp\.com\/miniapp\/v2\/(svip_lite\/user_info|wechat_message\/template_info) tag=泡泡玛特 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/ppmt/ppmt.js, requires-body=true, enable={ppmt}
+cron "26 0 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/ppmt/ppmt.js, tag=泡泡玛特签到, enable={ppmt}
+
+# 海底捞
+http-request ^https:\/\/superapp-public\.kiwa-tech\.com\/activity\/wxapp\/signin\/(query|querySite|querySwitch|queryFragment|signin) tag=海底捞 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/haidilao/haidilao.js, requires-body=false, enable={haidilao}
+cron "34 0 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/haidilao/haidilao.js, tag=海底捞签到, enable={haidilao}
+
+# 名创优品
+http-request ^https:\/\/member-center\.miniso\.com\/userinfo\/userinfo\/GetUserInfoV3 tag=名创优品 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/miniso/miniso.js, requires-body=false, enable={miniso}
+cron "42 0 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/miniso/miniso.js, tag=名创优品签到, enable={miniso}
+
+# 龙湖天街(小程序)
+http-request ^https:\/\/gw2c-hw-open\.longfor\.com\/lmarketing-task-api-mvc-prod\/openapi\/task\/v1\/signature\/clock$ tag=龙湖天街 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/lhtj/lhtj.js, requires-body=false, enable={lhtj}
+cron "48 5 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/lhtj/lhtj.js, tag=龙湖天街签到, enable={lhtj}
+
+# 松山棉店
+http-request ^https:\/\/xapi\.weimob\.com\/api3\/onecrm\/mactivity\/sign\/misc\/sign\/activity\/(c\/signMainInfo|core\/c\/(getActivityInfo|sign)) tag=松山棉店 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/songshan/songshan.js, requires-body=true, enable={songshan}
+cron "50 0 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/songshan/songshan.js, tag=松山棉店签到, enable={songshan}
+
+# 特来电
+http-request ^https:\/\/sgi\.teld\.cc\/api\/invoke tag=特来电 Cookie, script-path=https://gist.githubusercontent.com/onshine/9cb869dc3ca5f1ada8353043053b31cc/raw/teld.js, requires-body=false, enable={teld}
+cron "0-59/19 8-10 * * *" script-path=https://gist.githubusercontent.com/onshine/9cb869dc3ca5f1ada8353043053b31cc/raw/teld.js, tag=特来电签到, enable={teld}
+
+# 一点万象
+http-request ^https:\/\/app\.mixcapp\.com\/mixc\/api\/v4\/member\/getPersonalData tag=一点万象 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/newmixc/newmixc.cookie.js, requires-body=false, enable={newmixc}
+cron "9 6 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/app/newmixc/newmixc.js, tag=一点万象签到, enable={newmixc}
+
+#林里LINLEE（小程序签到）
+http-request ^https:\/\/webapi\.qmai\.cn\/web\/(cmk-center\/sign\/(activityInfo|userSignStatistics|userSignRecordCalendar)|catering\/common\/common-info|mall-apiserver\/integral\/(home\/index|item\/goods(\/detail)?)) tag=林里 Cookie, script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/linli/linli.js, requires-body=true, enable={linlee}
+cron "0 10 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/miniprogram/linli/linli.js, tag=林里签到兑换, enable={linlee}
