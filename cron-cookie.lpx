@@ -15,7 +15,7 @@ moyu = switch,false,tag=摸鱼来啦,desc=moyu App 版
 sgcc = switch,false,tag=网上国网,desc=网上国网 App 版
 nodeseek = switch,false,tag=NODESEEK(WEB·测试中·只能单号),desc=NODESEEK网页签到
 baidunetdisk = switch,false,tag=百度网盘(App·测试中),desc=打开百度网盘 APP →「我的」→ 进入「签到」页面,停留 1 秒
-nodeseek-minis = switch,false,tag=NODESEEK(@Minis),desc=NODESEEK网页签到
+nodeseek-minis = switch,false,tag=NODESEEK(多账号@Minis),desc=NODESEEK网页签到
 linlee-minis = switch,false,tag=林里签到兑换R10.1@minis,desc=微信小程序LINLEE签到兑换
 linli_task_exchange_coupon = switch,false,tag=林里·兑换单杯免单券,desc=须同时开启「林里签到兑换R10.1@minis」；每天10点满足库存、鸭币和限购条件时自动兑换
 linli_task_exchange_toy = switch,false,tag=林里·兑换鸭游乐园周边,desc=须同时开启「林里签到兑换R10.1@minis」；每天10点满足库存、鸭币和限购条件时自动兑换
