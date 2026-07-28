@@ -6,50 +6,50 @@
 #!tag=签到, Cookie
 
 [Argument]
+#自定义
 PingMe = switch,false,tag=PingMe签到,desc=PingMe App 版
 WeTalk = switch,false,tag=WeTalk签到,desc=WeTalk App 版
+teld = switch,false,tag=特来电,desc=打开特来电小程序进「签到365天」页触发(详见 README)
 ssq = switch,false,tag=彩票查询,desc=ssq App 版
 moyu = switch,false,tag=摸鱼来啦,desc=moyu App 版
-wps = switch,false,tag=WPS(App·测试中),desc=WPS App 版
-sgcc = switch,false,tag=网上国网(App·测试中),desc=网上国网 App 版
-nodeseek = switch,false,tag=NODESEEK(WEB·测试中),desc=NODESEEK网页签到
-camscanner = switch,false,tag=扫描全能王(App·测试中),desc=打开「扫描全能王」APP → 任意页面停留几秒(自动触发 get_user_attribute)
+sgcc = switch,false,tag=网上国网,desc=网上国网 App 版
+nodeseek = switch,false,tag=NODESEEK(WEB·测试中·只能单号),desc=NODESEEK网页签到
 baidunetdisk = switch,false,tag=百度网盘(App·测试中),desc=打开百度网盘 APP →「我的」→ 进入「签到」页面,停留 1 秒
-dreame = switch,false,tag=追觅(App·测试中),desc=打开追觅 APP → 进入「商城」或「我的」页面,触发 my/info
-linghu = switch,false,tag=灵狐灵购(App·测试中),desc=打开灵狐灵购 APP → 进入「商城」或「我的」页面,触发 my/info
+nodeseek-minis = switch,false,tag=NODESEEK(@Minis),desc=NODESEEK网页签到
+
+
+#MaYIHEI
 ppmt = switch,false,tag=泡泡玛特,desc=打开泡泡玛特小程序进会员页触发(详见 README)
 tuhu = switch,false,tag=途虎养车,desc=打开途虎养车小程序进签到页触发(详见 README)
 haidilao = switch,false,tag=海底捞,desc=打开海底捞小程序进签到页触发(详见 README)
 huisheng = switch,false,tag=惠省红包墙,desc=打开惠省小程序进红包墙触发(详见 README)
 miniso = switch,false,tag=名创优品,desc=打开名创优品小程序进会员页触发(详见 README)
+longde = switch,false,tag=龙德广场,desc=打开龙德广场小程序进签到页触发(与北京华联同会员体系,二选一)
 lhtj = switch,false,tag=龙湖天街(小程序),desc=打开龙湖天街小程序进签到页触发(详见 README)
 songshan = switch,false,tag=松山棉店,desc=打开松山棉店小程序进签到页触发(详见 README)
 wedome = switch,false,tag=味多美,desc=打开味多美小程序进「我的」页触发(详见 README)
-teld = switch,false,tag=特来电,desc=打开特来电小程序进「签到365天」页触发(详见 README)
 bhg = switch,false,tag=北京华联,desc=打开 BHG Mall 小程序进签到页触发(与龙德广场同会员体系,二选一)
-longde = switch,false,tag=龙德广场,desc=打开龙德广场小程序进签到页触发(与北京华联同会员体系,二选一)
 weibotalk = switch,false,tag=微博超话,desc=微博 App 进超话/签到触发(详见 README)
 mihoyo = switch,false,tag=米游社,desc=米游社 App 进社区页触发(详见 README)
 tenvideo = switch,false,tag=腾讯视频,desc=微信小程序「腾讯视频」打开触发(详见 README)
 newmixc = switch,false,tag=一点万象,desc=一点万象 App 进会员页触发(详见 README)
 mishop = switch,false,tag=小米商城,desc=小米商城 App 进米金签到页触发(详见 README)
+milottery = switch,false,tag=小米抽奖签到,desc=小米商城 App 进「狂欢礼」抽奖活动页触发(详见 README)
 youpin = switch,false,tag=小米有品,desc=小米有品 App 进「我的/红包」触发(详见 README)
 wanda = switch,false,tag=万达电影,desc=万达电影 App 进「我的」页触发(详见 README)
 qqmusic = switch,false,tag=QQ音乐,desc=QQ 音乐 App 进绿钻会员中心触发(详见 README)
 lhtj_app = switch,false,tag=龙湖天街(App),desc=龙湖天街 App 进签到页触发(APP 端受顶象风控,详见 README)
-bibisheng = switch,false,tag=笔笔省(已归档),desc=微信支付笔笔省,已归档(7h TTL 无法续期)
-casetify = switch,false,tag=CASETiFY(已归档),desc=CASETiFY 小程序,已归档(token 续期绑 wx.login)
-topsports = switch,false,tag=滔搏运动(已归档),desc=滔搏运动小程序,已归档(双 auth 撑不过 24h)
-lvcchong = switch,false,tag=驴充充(小程序·已归档),desc=驴充充小程序版,已归档(token<38min)
-lvcchong_app = switch,false,tag=驴充充(App·已归档),desc=驴充充 App 版,已归档(refreshToken~20min)
+tingtingfm = switch,false,tag=听听FM,desc=听听FM App 进「我的/任务中心」触发(详见 README)
+wps = switch,false,tag=WPS,desc=WPS App 进任务中心或福利中心触发(详见 README)
+camscanner = switch,false,tag=扫描全能王,desc=扫描全能王 App 任意页停留几秒触发(详见 README)
+dreame = switch,false,tag=追觅,desc=打开追觅 APP → 进入「商城」或「我的」页面,触发 my/info
+linghu = switch,false,tag=灵狐灵购,desc=打开灵狐灵购 APP → 进入「商城」或「我的」页面,触发 my/info
 ninebot = switch,false,tag=九号出行,desc=九号出行 App 版
-milottery = switch,false,tag=小米抽奖签到,desc=小米抽奖签到 小米商城App
 linlee = switch,false,tag=林里签到兑换,desc=微信小程序LINLEE签到兑换
 nodecheck = switch,false,tag=节点阻断检测,desc=进入节点或策略组页面，对目标节点运行「节点阻断检测」
 
 [MITM]
-hostname = popvip.paquapp.com, api.tuhu.cn, superapp-public.kiwa-tech.com, media.meituan.com, member-center.miniso.com, a.china-smartech.com, gw2c-hw-open.longfor.com, xapi.weimob.com, scrm-b.zjian.net, sgi.teld.cc, c2.teld.cc, api.weibo.cn, bbs-api.miyoushe.com, pbaccess.video.qq.com, app.mixcapp.com, shop-api.retail.mi.com, m.xiaomiyoupin.com, user-api-prd-mx.wandafilm.com, u6.y.qq.com, discount.wxpapp.wechatpay.cn, mini-app-api.casetify.cn, m.topsports.com.cn, wxmall.topsports.com.cn, appapi.lvcchong.com, personal-act.wps.cn, csc-service.sgcc.com.cn, www.nodeseek.com, api-cs.intsig.net, pan.baidu.com, miao.baidu.com, cn-wxmall.dreame.tech, cn-yx-wxmall.dreame.tech, api.wetalkapp.com, api.pingmeapp.net shop-api.retail.mi.com, webapi.qmai.cn
-
+hostname = popvip.paquapp.com, api.tuhu.cn, superapp-public.kiwa-tech.com, media.meituan.com, member-center.miniso.com, a.china-smartech.com, gw2c-hw-open.longfor.com, xapi.weimob.com, scrm-b.zjian.net, webapi.qmai.cn, sgi.teld.cc, c2.teld.cc, api.weibo.cn, api-takumi.miyoushe.com, api-takumi.mihoyo.com, pbaccess.video.qq.com, app.mixcapp.com, shop-api.retail.mi.com, m.xiaomiyoupin.com, user-api-prd-mx.wandafilm.com, u6.y.qq.com, xunting.vbegin.com.cn, personal-act.wps.cn, api-cs.intsig.net, csc-service.sgcc.com.cn, www.nodeseek.com, pan.baidu.com, miao.baidu.com, cn-wxmall.dreame.tech, cn-yx-wxmall.dreame.tech, api.wetalkapp.com, api.pingmeapp.net
 [Script]
 
 
@@ -192,5 +192,8 @@ cron "0 10 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/papercli
 #节点阻断检测
 generic script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/loon/nodecheck/nodecheck.js, tag=节点阻断检测, timeout=20, img-url=bolt.horizontal.icloud.fill.system, enable={nodecheck}
 
+#NodeSeek 随机窗口签到 V6@Minis
+http-request ^https:\/\/www\.nodeseek\.com\/(?:$|board(?:$|[?#])|credit(?:$|[?#])|nodeseek-script\/reset(?:$|[?#])) script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, requires-body=false, timeout=5, tag=NodeSeek Cookie 抓取 V6, enable={nodeseek-minis}
+cron "10-20 9 * * *" script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, timeout=120, tag=NodeSeek 随机窗口签到 V6, enable={nodeseek-minis}
 
 
