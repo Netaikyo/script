@@ -200,9 +200,9 @@ cron "10-20 9 * * *" script-path=https://gist.githubusercontent.com/onshine/c5e1
 
 # 林里签到兑换 R10.1@Minis
 # 抓取脚本：保存签到接口完整来源请求头，并恢复 Cookie 获取成功通知
-http-request ^https:\/\/[^\/]*qmai\.cn\/.* script-path=https://paste.rs/h1YZl, requires-body=true, timeout=20, tag=林里Cookie抓取通知R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
+http-request ^https:\/\/[^\/]*qmai\.cn\/.* script-path=https://gist.githubusercontent.com/onshine/68e7a911c6a4f33d49481621f49349bc/raw/linlee.js, requires-body=true, timeout=20, tag=林里Cookie抓取通知R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
 # 定时脚本：签到并按 Argument 开关执行免单券/周边兑换
-cron "0 10 * * *" script-path=https://paste.rs/p40ta, timeout=300, argument=[{linli_task_exchange_coupon},{linli_task_exchange_toy}], tag=林里签到兑换R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
+cron "0 10 * * *" script-path=https://gist.githubusercontent.com/onshine/1c4061f48b31a607f705653f6e485933/raw/linlee-r10.2.js, timeout=300, argument=[{linli_task_exchange_coupon},{linli_task_exchange_toy}], tag=林里签到兑换R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
 
 
 
