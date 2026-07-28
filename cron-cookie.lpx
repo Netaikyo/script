@@ -16,7 +16,7 @@ sgcc = switch,false,tag=网上国网,desc=网上国网 App 版
 nodeseek = switch,false,tag=NODESEEK(WEB·测试中·只能单号),desc=NODESEEK网页签到
 baidunetdisk = switch,false,tag=百度网盘(App·测试中),desc=打开百度网盘 APP →「我的」→ 进入「签到」页面,停留 1 秒
 nodeseek-minis = switch,false,tag=NODESEEK(@Minis),desc=NODESEEK网页签到
-
+linlee-minis = switch,false,tag=林里签到兑换R10.1@minis,desc=微信小程序LINLEE签到兑换
 
 #MaYIHEI
 ppmt = switch,false,tag=泡泡玛特,desc=打开泡泡玛特小程序进会员页触发(详见 README)
@@ -49,7 +49,7 @@ linlee = switch,false,tag=林里签到兑换,desc=微信小程序LINLEE签到兑
 nodecheck = switch,false,tag=节点阻断检测,desc=进入节点或策略组页面，对目标节点运行「节点阻断检测」
 
 [MITM]
-hostname = popvip.paquapp.com, api.tuhu.cn, superapp-public.kiwa-tech.com, media.meituan.com, member-center.miniso.com, a.china-smartech.com, gw2c-hw-open.longfor.com, xapi.weimob.com, scrm-b.zjian.net, webapi.qmai.cn, sgi.teld.cc, c2.teld.cc, api.weibo.cn, api-takumi.miyoushe.com, api-takumi.mihoyo.com, pbaccess.video.qq.com, app.mixcapp.com, shop-api.retail.mi.com, m.xiaomiyoupin.com, user-api-prd-mx.wandafilm.com, u6.y.qq.com, xunting.vbegin.com.cn, personal-act.wps.cn, api-cs.intsig.net, csc-service.sgcc.com.cn, www.nodeseek.com, pan.baidu.com, miao.baidu.com, cn-wxmall.dreame.tech, cn-yx-wxmall.dreame.tech, api.wetalkapp.com, api.pingmeapp.net
+hostname = popvip.paquapp.com, api.tuhu.cn, superapp-public.kiwa-tech.com, media.meituan.com, member-center.miniso.com, a.china-smartech.com, gw2c-hw-open.longfor.com, xapi.weimob.com, scrm-b.zjian.net, webapi.qmai.cn, sgi.teld.cc, c2.teld.cc, api.weibo.cn, api-takumi.miyoushe.com, api-takumi.mihoyo.com, pbaccess.video.qq.com, app.mixcapp.com, shop-api.retail.mi.com, m.xiaomiyoupin.com, user-api-prd-mx.wandafilm.com, u6.y.qq.com, xunting.vbegin.com.cn, personal-act.wps.cn, api-cs.intsig.net, csc-service.sgcc.com.cn, www.nodeseek.com, pan.baidu.com, miao.baidu.com, cn-wxmall.dreame.tech, cn-yx-wxmall.dreame.tech, api.wetalkapp.com, api.pingmeapp.net, *.qmai.cn, qmai.cn
 [Script]
 
 
@@ -195,5 +195,10 @@ generic script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/hea
 #NodeSeek 随机窗口签到 V6@Minis
 http-request ^https:\/\/www\.nodeseek\.com\/(?:$|board(?:$|[?#])|credit(?:$|[?#])|nodeseek-script\/reset(?:$|[?#])) script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, requires-body=false, timeout=5, tag=NodeSeek Cookie 抓取 V6, enable={nodeseek-minis}
 cron "10-20 9 * * *" script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, timeout=120, tag=NodeSeek 随机窗口签到 V6, enable={nodeseek-minis}
+
+#林里签到@Minis
+http-request ^https:\/\/[^\/]*qmai\.cn\/.* script-path=https://gist.githubusercontent.com/onshine/68e7a911c6a4f33d49481621f49349bc/raw/linlee.js, requires-body=true, timeout=20, tag=林里Cookie抓取通知R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable=true, enable={linlee-minis}
+cron "0 10 * * *" script-path=https://gist.githubusercontent.com/onshine/68e7a911c6a4f33d49481621f49349bc/raw/linlee.js, timeout=300, tag=林里签到兑换R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable=true, enable={linlee-minis}
+
 
 
