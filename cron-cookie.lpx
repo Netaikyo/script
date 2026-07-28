@@ -15,10 +15,11 @@ moyu = switch,false,tag=摸鱼来啦,desc=moyu App 版
 sgcc = switch,false,tag=网上国网,desc=网上国网 App 版
 nodeseek = switch,false,tag=NODESEEK(WEB·测试中·只能单号),desc=NODESEEK网页签到
 baidunetdisk = switch,false,tag=百度网盘(App·测试中),desc=打开百度网盘 APP →「我的」→ 进入「签到」页面,停留 1 秒
-nodeseek-minis = switch,false,tag=NODESEEK(多账号@Minis),desc=NODESEEK网页签到
-linlee-minis = switch,false,tag=林里签到兑换R10.1@minis,desc=微信小程序LINLEE签到兑换
+nodeseek-minis = switch,false,tag=NODESEEK(多账号@Minis修复),desc=NODESEEK网页签到
+linlee-minis = switch,false,tag=林里签到兑换R10.1@Minis修复,desc=微信小程序LINLEE签到兑换
 linli_task_exchange_coupon = switch,false,tag=林里·兑换单杯免单券,desc=须同时开启「林里签到兑换R10.1@minis」；每天10点满足库存、鸭币和限购条件时自动兑换
 linli_task_exchange_toy = switch,false,tag=林里·兑换鸭游乐园周边,desc=须同时开启「林里签到兑换R10.1@minis」；每天10点满足库存、鸭币和限购条件时自动兑换
+wedome-minis = switch,false,tag=味多美（@Minis修复）,desc=打开味多美小程序进「我的」页触发(详见 README)
 
 #MaYIHEI
 ppmt = switch,false,tag=泡泡玛特,desc=打开泡泡玛特小程序进会员页触发(详见 README)
@@ -29,7 +30,7 @@ miniso = switch,false,tag=名创优品,desc=打开名创优品小程序进会员
 longde = switch,false,tag=龙德广场,desc=打开龙德广场小程序进签到页触发(与北京华联同会员体系,二选一)
 lhtj = switch,false,tag=龙湖天街(小程序),desc=打开龙湖天街小程序进签到页触发(详见 README)
 songshan = switch,false,tag=松山棉店,desc=打开松山棉店小程序进签到页触发(详见 README)
-wedome = switch,false,tag=味多美,desc=打开味多美小程序进「我的」页触发(详见 README)
+wedome = switch,false,tag=味多美（原始脚本异常）,desc=打开味多美小程序进「我的」页触发(详见 README)
 bhg = switch,false,tag=北京华联,desc=打开 BHG Mall 小程序进签到页触发(与龙德广场同会员体系,二选一)
 weibotalk = switch,false,tag=微博超话,desc=微博 App 进超话/签到触发(详见 README)
 mihoyo = switch,false,tag=米游社,desc=米游社 App 进社区页触发(详见 README)
@@ -194,15 +195,18 @@ cron "0 10 * * *" script-path=https://raw.githubusercontent.com/MaYIHEI/papercli
 #节点阻断检测
 generic script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/heads/main/loon/nodecheck/nodecheck.js, tag=节点阻断检测, timeout=20, img-url=bolt.horizontal.icloud.fill.system, enable={nodecheck}
 
-#NodeSeek 随机窗口签到 V6@Minis
-http-request ^https:\/\/www\.nodeseek\.com\/(?:$|board(?:$|[?#])|credit(?:$|[?#])|nodeseek-script\/reset(?:$|[?#])) script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, requires-body=false, timeout=5, tag=NodeSeek Cookie 抓取 V6, enable={nodeseek-minis}
-cron "10-20 9 * * *" script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, timeout=120, tag=NodeSeek 随机窗口签到 V6, enable={nodeseek-minis}
+#NodeSeek 随机窗口签到 V6@Minis修复
+http-request ^https:\/\/www\.nodeseek\.com\/(?:$|board(?:$|[?#])|credit(?:$|[?#])|nodeseek-script\/reset(?:$|[?#])) script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, requires-body=false, timeout=5, tag=NodeSeek Cookie 抓取 V6@Minis修复, enable={nodeseek-minis}
+cron "10-20 9 * * *" script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, timeout=120, tag=NodeSeek 随机窗口签到 V6@Minis修复, enable={nodeseek-minis}
 
-# 林里签到兑换 R10.1@Minis
+# 林里签到兑换 R10.1@Minis修复
 # 抓取脚本：保存签到接口完整来源请求头，并恢复 Cookie 获取成功通知
-http-request ^https:\/\/[^\/]*qmai\.cn\/.* script-path=https://gist.githubusercontent.com/onshine/68e7a911c6a4f33d49481621f49349bc/raw/linlee.js, requires-body=true, timeout=20, tag=林里Cookie抓取通知R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
+http-request ^https:\/\/[^\/]*qmai\.cn\/.* script-path=https://gist.githubusercontent.com/onshine/68e7a911c6a4f33d49481621f49349bc/raw/linlee.js, requires-body=true, timeout=20, tag=林里Cookie抓取通知R10.1@Minis修复, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
 # 定时脚本：签到并按 Argument 开关执行免单券/周边兑换
-cron "0 10 * * *" script-path=https://gist.githubusercontent.com/onshine/1c4061f48b31a607f705653f6e485933/raw/linlee-r10.2.js, timeout=300, argument=[{linli_task_exchange_coupon},{linli_task_exchange_toy}], tag=林里签到兑换R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
+cron "0 10 * * *" script-path=https://gist.githubusercontent.com/onshine/1c4061f48b31a607f705653f6e485933/raw/linlee-r10.2.js, timeout=300, argument=[{linli_task_exchange_coupon},{linli_task_exchange_toy}], tag=林里签到兑换R10.1@Minis修复, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
 
-
+# 味多美签到 · 品牌动态@Minis修复
+http-request ^https:\/\/scrm-b\.zjian\.net\/api\/(member\/.*|marketing\/pointSignInActivitySet\/.*) tag=味多美原生请求@Minis修复, script-path=https://gist.githubusercontent.com/onshine/9e14c0d7e412dfa10e7f7e9671336da9/raw/wedome.js, requires-body=true, timeout=20, enable={wedome-minis}
+http-response ^https:\/\/scrm-b\.zjian\.net\/api\/(member\/.*|marketing\/pointSignInActivitySet\/.*) tag=味多美原生响应@Minis修复, script-path=https://gist.githubusercontent.com/onshine/9e14c0d7e412dfa10e7f7e9671336da9/raw/wedome.js, requires-body=true, timeout=20, enable={wedome-minis}
+cron "00 6 * * *" script-path=https://gist.githubusercontent.com/onshine/9e14c0d7e412dfa10e7f7e9671336da9/raw/wedome.js, timeout=300, tag=味多美签到@Minis修复, enable={wedome-minis}
 
