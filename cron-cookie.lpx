@@ -17,6 +17,8 @@ nodeseek = switch,false,tag=NODESEEK(WEB·测试中·只能单号),desc=NODESEEK
 baidunetdisk = switch,false,tag=百度网盘(App·测试中),desc=打开百度网盘 APP →「我的」→ 进入「签到」页面,停留 1 秒
 nodeseek-minis = switch,false,tag=NODESEEK(@Minis),desc=NODESEEK网页签到
 linlee-minis = switch,false,tag=林里签到兑换R10.1@minis,desc=微信小程序LINLEE签到兑换
+linli_task_exchange_coupon = switch,false,tag=林里·兑换单杯免单券,desc=须同时开启「林里签到兑换R10.1@minis」；每天10点满足库存、鸭币和限购条件时自动兑换
+linli_task_exchange_toy = switch,false,tag=林里·兑换鸭游乐园周边,desc=须同时开启「林里签到兑换R10.1@minis」；每天10点满足库存、鸭币和限购条件时自动兑换
 
 #MaYIHEI
 ppmt = switch,false,tag=泡泡玛特,desc=打开泡泡玛特小程序进会员页触发(详见 README)
@@ -196,9 +198,11 @@ generic script-path=https://raw.githubusercontent.com/MaYIHEI/paperclip/refs/hea
 http-request ^https:\/\/www\.nodeseek\.com\/(?:$|board(?:$|[?#])|credit(?:$|[?#])|nodeseek-script\/reset(?:$|[?#])) script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, requires-body=false, timeout=5, tag=NodeSeek Cookie 抓取 V6, enable={nodeseek-minis}
 cron "10-20 9 * * *" script-path=https://gist.githubusercontent.com/onshine/c5e1df4d24a6961967ec4287b8897d2d/raw/NodeSeek.js, timeout=120, tag=NodeSeek 随机窗口签到 V6, enable={nodeseek-minis}
 
-#林里签到@Minis
-http-request ^https:\/\/[^\/]*qmai\.cn\/.* script-path=https://gist.githubusercontent.com/onshine/68e7a911c6a4f33d49481621f49349bc/raw/linlee.js, requires-body=true, timeout=20, tag=林里Cookie抓取通知R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable=true, enable={linlee-minis}
-cron "0 10 * * *" script-path=https://gist.githubusercontent.com/onshine/68e7a911c6a4f33d49481621f49349bc/raw/linlee.js, timeout=300, tag=林里签到兑换R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable=true, enable={linlee-minis}
+# 林里签到兑换 R10.1@Minis
+# 抓取脚本：保存签到接口完整来源请求头，并恢复 Cookie 获取成功通知
+http-request ^https:\/\/[^\/]*qmai\.cn\/.* script-path=https://paste.rs/h1YZl, requires-body=true, timeout=20, tag=林里Cookie抓取通知R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
+# 定时脚本：签到并按 Argument 开关执行免单券/周边兑换
+cron "0 10 * * *" script-path=https://paste.rs/p40ta, timeout=300, argument=[{linli_task_exchange_coupon},{linli_task_exchange_toy}], tag=林里签到兑换R10.1@Minis, img-url=https://raw.githubusercontent.com/MaYIHEI/pin/refs/heads/main/app/linli.png, enable={linlee-minis}
 
 
 
